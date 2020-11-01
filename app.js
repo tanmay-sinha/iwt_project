@@ -24,7 +24,9 @@ document.querySelector(".btn-roll").addEventListener("click", function(){
         // 2. Display the result
         var diceDOM = document.querySelector(".dice");
         diceDOM.style.display = "block";
-        diceDOM.src = "dice-" + dice + ".png";
+        diceDOM.style.height = "300";
+        diceDOM.style.width = "300";
+        diceDOM.src = "dice-" + dice + ".jpg";
 
 
         // 3. Update the roundScore, but only if that's not 1
