@@ -21,7 +21,7 @@ html {
 }
 
 body {
-    background-image: linear-gradient(rgba(62, 20, 20, 0.4), rgba(62, 20, 20, 0.4)), url(farm.jpg);
+    background-image: linear-gradient(rgba(62, 20, 20, 0.4), rgba(62, 20, 20, 0.4)), url(autumn.jpg);
     background-size: cover;
     background-position: center;
     font-family: Lato;
@@ -40,6 +40,8 @@ h1 {
 h2 {
     text-align: center;
     color: white;
+    font-size: x-large;
+    font-weight: 800;
     margin-bottom: 40px;
 }
 
@@ -98,7 +100,7 @@ p:hover {
 .wrapper {
     width: 1000px;
     position: absolute;
-    top: 65%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, -65%);
     background-color: #fff;
