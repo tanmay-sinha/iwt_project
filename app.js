@@ -44,6 +44,9 @@ document.querySelector(".btn-hold").addEventListener("click", function () {
         document.querySelector("#score-" + activePlayer).textContent = scores[activePlayer];
 
         // Check if player won the game
+        localStorage.highscore = Math.max(Number(localStorage.highscore), Number(scores[activePlayer]));
+        document.querySelector(".highscore").textContent = "High Score - " + localStorage.highscore;
+
         if (scores[activePlayer] >= 100) {
             document.querySelector("#name-" + activePlayer).textContent = "Winner!";
             document.querySelector(".dice").style.display = "none";
@@ -90,7 +93,12 @@ function init() {
     document.querySelector(".player-0-panel").classList.remove("winner");
     document.querySelector(".player-1-panel").classList.remove("winner");
 
-    document.querySelector(".player-0-panel").classList.add("active");;
+    document.querySelector(".player-0-panel").classList.add("active");
+
+    if(!localStorage.highscore) {
+        localStorage.setItem("highscore", "0");
+    }
+    document.querySelector(".highscore").textContent = "High Score - " + localStorage.highscore;
 }
 
 // Clicking for instructions
