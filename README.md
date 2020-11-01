@@ -9,3 +9,4 @@ Fun 2 player game with the dice in the center.
 - The first player to reach 100 points on GLOBAL score wins the game
 
 ## Screenshot
+![](Screenshot_from_2020-11-01_16-12-29.png)
