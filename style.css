@@ -50,6 +50,20 @@ p:hover {
     display: none;
 }
 
+.startmodal {
+    font-size: 21px;
+    color: white;
+    font-family: lato;
+    text-align: center;
+}
+
+input {
+    margin-top: 20px;
+    font-size: 40px;
+    margin-bottom: 20px;
+    font-family: lato;
+}
+
 .modal p {
     text-decoration: none;
     font-size: 21px;
@@ -58,7 +72,6 @@ p:hover {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-
 }
 
 .modal button {
@@ -155,6 +168,17 @@ button {
     text-transform: uppercase;
     cursor: pointer;
     font-weight: 300;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.start {
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    background: none;
+    font-family: Lato;
+    border: none;
+    color: white;
     transition: background-color 0.3s, color 0.3s;
 }
 
