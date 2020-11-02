@@ -1,7 +1,6 @@
 var scores, roundScore, activePlayer;
 var gamePlaying = true;
 var winning_score;
-init();
 
 // Clicking the button to roll the dice
 document.querySelector(".btn-roll").addEventListener("click", function () {
@@ -74,7 +73,12 @@ function nextPlayer() {
     document.querySelector(".dice").style.display = "none";
 }
 
-document.querySelector(".btn-new").addEventListener("click", init);
+document.querySelector(".btn-new").addEventListener("click", function () {
+    var name1 = document.getElementById("name1").value;
+    var name2 = document.getElementById("name2").value;
+    winning_score = Number(document.getElementById("max_score").value);
+    init(name1, name2);
+});
 
 function init(name1, name2) {
     scores = [0, 0];
@@ -114,5 +118,10 @@ document.querySelector(".start").addEventListener("click", function () {
     var name1 = document.getElementById("name1").value;
     var name2 = document.getElementById("name2").value;
     winning_score = Number(document.getElementById("max_score").value);
-    init(name1, name2);
+    if (!name1 || !name2 || !winning_score)
+        alert("any field can't be empty!!");
+    else {
+        document.querySelector(".startmodal").classList.remove("show");
+        init(name1, name2);
+    }
 });
