@@ -1,6 +1,6 @@
 var scores, roundScore, activePlayer;
 var gamePlaying = true;
-
+var winning_score;
 init();
 
 // Clicking the button to roll the dice
@@ -47,7 +47,7 @@ document.querySelector(".btn-hold").addEventListener("click", function () {
         localStorage.highscore = Math.max(Number(localStorage.highscore), Number(scores[activePlayer]));
         document.querySelector(".highscore").textContent = "High Score - " + localStorage.highscore;
 
-        if (scores[activePlayer] >= 100) {
+        if (scores[activePlayer] >= winning_score) {
             document.querySelector("#name-" + activePlayer).textContent = "Winner!";
             document.querySelector(".dice").style.display = "none";
             document.querySelector(".player-" + activePlayer + "-panel").classList.add("winner");
@@ -76,7 +76,7 @@ function nextPlayer() {
 
 document.querySelector(".btn-new").addEventListener("click", init);
 
-function init() {
+function init(name1, name2) {
     scores = [0, 0];
     activePlayer = 0;
     roundScore = 0;
@@ -86,8 +86,8 @@ function init() {
     document.getElementById("score-1").textContent = "0";
     document.getElementById("current-0").textContent = "0";
     document.getElementById("current-1").textContent = "0";
-    document.getElementById("name-0").textContent = "Player 1";
-    document.getElementById("name-1").textContent = "Player 2";
+    document.getElementById("name-0").textContent = name1;
+    document.getElementById("name-1").textContent = name2;
 
     document.querySelector(".player-1-panel").classList.remove("active");
     document.querySelector(".player-0-panel").classList.remove("winner");
@@ -95,7 +95,7 @@ function init() {
 
     document.querySelector(".player-0-panel").classList.add("active");
 
-    if(!localStorage.highscore) {
+    if (!localStorage.highscore) {
         localStorage.setItem("highscore", "0");
     }
     document.querySelector(".highscore").textContent = "High Score - " + localStorage.highscore;
@@ -107,4 +107,12 @@ document.querySelector(".instructions").addEventListener("click", function () {
     document.querySelector(".close").addEventListener("click", function () {
         document.querySelector(".modal").classList.remove("show");
     });
+});
+
+// Starting game
+document.querySelector(".start").addEventListener("click", function () {
+    var name1 = document.getElementById("name1").value;
+    var name2 = document.getElementById("name2").value;
+    winning_score = Number(document.getElementById("max_score").value);
+    init(name1, name2);
 });
