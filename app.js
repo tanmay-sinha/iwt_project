@@ -1,7 +1,7 @@
 var scores, roundScore, activePlayer;
 var gamePlaying = true;
 var winning_score;
-
+var name1, name2;
 // Clicking the button to roll the dice
 document.querySelector(".btn-roll").addEventListener("click", function () {
     if (gamePlaying) {
@@ -43,9 +43,15 @@ document.querySelector(".btn-hold").addEventListener("click", function () {
         document.querySelector("#score-" + activePlayer).textContent = scores[activePlayer];
 
         // Check if player won the game
-        localStorage.highscore = Math.max(Number(localStorage.highscore), Number(scores[activePlayer]));
-        document.querySelector(".highscore").textContent = "High Score - " + localStorage.highscore;
-
+        
+        if(Number(localStorage.highscore) < Number(scores[activePlayer]))
+        {
+            localStorage.highscore = Number(scores[activePlayer]);
+            localStorage.scorer = (activePlayer === 0 ? name1 : name2);
+        }
+        document.querySelector(".highscore").textContent = "High Score - " + localStorage.highscore
+        + " ( " + localStorage.scorer + " ) ";
+        
         if (scores[activePlayer] >= winning_score) {
             document.querySelector("#name-" + activePlayer).textContent = "Winner!";
             document.querySelector(".dice").style.display = "none";
@@ -74,13 +80,13 @@ function nextPlayer() {
 }
 
 document.querySelector(".btn-new").addEventListener("click", function () {
-    var name1 = document.getElementById("name1").value;
-    var name2 = document.getElementById("name2").value;
+    name1 = document.getElementById("name1").value;
+    name2 = document.getElementById("name2").value;
     winning_score = Number(document.getElementById("max_score").value);
-    init(name1, name2);
+    init();
 });
 
-function init(name1, name2) {
+function init() {
     scores = [0, 0];
     activePlayer = 0;
     roundScore = 0;
@@ -99,10 +105,12 @@ function init(name1, name2) {
 
     document.querySelector(".player-0-panel").classList.add("active");
 
-    if (!localStorage.highscore) {
+    if (!localStorage.highscore || !localStorage.scorer) {
         localStorage.setItem("highscore", "0");
+        localStorage.setItem("scorer", "");
     }
-    document.querySelector(".highscore").textContent = "High Score - " + localStorage.highscore;
+    document.querySelector(".highscore").textContent = "High Score - " + localStorage.highscore
+        + " ( " + localStorage.scorer + " ) ";
 }
 
 // Clicking for instructions
@@ -115,13 +123,13 @@ document.querySelector(".instructions").addEventListener("click", function () {
 
 // Starting game
 document.querySelector(".start").addEventListener("click", function () {
-    var name1 = document.getElementById("name1").value;
-    var name2 = document.getElementById("name2").value;
+    name1 = document.getElementById("name1").value;
+    name2 = document.getElementById("name2").value;
     winning_score = Number(document.getElementById("max_score").value);
     if (!name1 || !name2 || !winning_score)
         alert("any field can't be empty!!");
     else {
         document.querySelector(".startmodal").classList.remove("show");
-        init(name1, name2);
+        init();
     }
 });

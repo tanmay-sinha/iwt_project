@@ -214,8 +214,8 @@ i {
 
 .highscore {
     position: absolute;
-    width: 250px;
-    left: 400px;
+    width: 1000px;
+    left: 350px;
     transform: translateX(-50%);
     transform: translateY(540px);
     color: #555;
