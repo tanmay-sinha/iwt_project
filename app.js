@@ -111,6 +111,7 @@ function init() {
     }
     document.querySelector(".highscore").textContent = "High Score - " + localStorage.highscore
         + " ( " + localStorage.scorer + " ) ";
+    gamePlaying = true;
 }
 
 // Clicking for instructions
